@@ -13,18 +13,7 @@ import { Rating } from '@mui/material';
 
 const theme = createTheme();
 
-const labels = {
-    0.5: 'Useless',
-    1: 'Useless+',
-    1.5: 'Poor',
-    2: 'Poor+',
-    2.5: 'Ok',
-    3: 'Ok+',
-    3.5: 'Good',
-    4: 'Good+',
-    4.5: 'Excellent',
-    5: 'Excellent+',
-};
+
 
 export default function ProfessorProfile({ name = 'Professor Name', address = 'professor@lnu.edu.ua', faculty = 'Faculty of Electronics', rating = 4.4 }) {
 
@@ -77,10 +66,10 @@ export default function ProfessorProfile({ name = 'Professor Name', address = 'p
                                     </Typography>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
                                         Your rating:
-                                        <Rating sx={{ml: 2}}  name="half-rating-read" defaultValue={2.5} precision={0.1} readOnly value={rating} />
-                                       <p>
+                                        <Rating sx={{ ml: 2 }} name="half-rating-read" defaultValue={2.5} precision={0.1} readOnly value={rating} />
+                                        <p>
                                             {rating}/5
-                                       </p>
+                                        </p>
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
@@ -88,18 +77,7 @@ export default function ProfessorProfile({ name = 'Professor Name', address = 'p
                         </div>
                         {/*with me end */}
                         <div>
-
-
                         </div>
-                        {/*} <Stack
-                            sx={{ pt: 4 }}
-                            direction="row"
-                            spacing={2}
-                            justifyContent="center"
-                        >
-                            <Button variant="contained">Main call to action</Button>
-                            <Button variant="outlined">Secondary action</Button>
-                </Stack>*/}
                     </Container>
                 </Box>
 
