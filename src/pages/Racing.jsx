@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Button, Card, CardActions, CardContent, CssBaseline, Paper, Rating } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 
 
@@ -12,9 +13,9 @@ const theme = createTheme();
 
 export default function Racing({ name = 'Vladyslav Balushka', rating = 4.5 }) {
 
-    const [value1, setValue1] = React.useState(0);
-    const [value2, setValue2] = React.useState(0);
-    const [value3, setValue3] = React.useState(0);
+    const [value1, setValue1] = React.useState();
+    const [value2, setValue2] = React.useState();
+    const [value3, setValue3] = React.useState();
 
     return (
         <ThemeProvider theme={theme}>
@@ -69,6 +70,7 @@ export default function Racing({ name = 'Vladyslav Balushka', rating = 4.5 }) {
                                 </Typography>
                                 <Typography variant="h5" component="div">
                                 <Rating
+                                        sx={{mr: 3, mb: 2}}
                                         precision={0.1}
                                         name="simple-controlled"
                                         value={value1}
@@ -76,6 +78,7 @@ export default function Racing({ name = 'Vladyslav Balushka', rating = 4.5 }) {
                                             setValue1(newValue);
                                         }}
                                     />
+                                    {value1}
                                 </Typography>
                                 
                                 <Typography variant="body2">
@@ -93,6 +96,7 @@ export default function Racing({ name = 'Vladyslav Balushka', rating = 4.5 }) {
                                 </Typography>
                                 <Typography variant="h5" component="div">
                                 <Rating
+                                        sx={{mr: 3, mb: 2}}
                                         precision={0.1}
                                         name="simple-controlled"
                                         value={value2}
@@ -100,6 +104,7 @@ export default function Racing({ name = 'Vladyslav Balushka', rating = 4.5 }) {
                                             setValue2(newValue);
                                         }}
                                     />
+                                    {value2}
                                 </Typography>
                              
                                 <Typography variant="body2">
@@ -115,6 +120,7 @@ export default function Racing({ name = 'Vladyslav Balushka', rating = 4.5 }) {
                                 </Typography>
                                 <Typography variant="h5" component="div">
                                 <Rating
+                                        sx={{mr: 3, mb: 2}}
                                         precision={0.1}
                                         name="simple-controlled"
                                         value={value3}
@@ -122,17 +128,21 @@ export default function Racing({ name = 'Vladyslav Balushka', rating = 4.5 }) {
                                             setValue3(newValue);
                                         }}
                                     />
+                                    {value3}
                                 </Typography>
                                 
                                 <Typography variant="body2">
                                 Об’єктивність оцінювання (О) - включає систему та критерії оцінювання, зокрема розподіл балів протягом семестру та під час екзамену, а також неупередженість та справедливість оцінювання.
                                 </Typography>
                             </CardContent>
-
-                        </Card>
+                        </Card>                                        
                     </Box>
                 </Box>
-
+                <div style={{position: 'absolute', top: '550px', left: '1250px'}} >
+                <Button variant="contained"><p style={{marginRight: '10px'}} >Відправити:</p>  <p className='send' ><SendIcon/></p></Button>
+                     
+                     </div>
+               
             </main>
 
 

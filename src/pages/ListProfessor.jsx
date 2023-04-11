@@ -3,11 +3,8 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import StarIcon from '@mui/icons-material/Star';
-import { yellow } from '@mui/material/colors';
 
 export default function ListProfessor({isRating = true,  name = 'Vladyslav Balushka ', faculty = 'Philosophy  ', description = '  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam modi expedita' }) {
 
