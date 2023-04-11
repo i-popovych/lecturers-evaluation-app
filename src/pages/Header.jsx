@@ -12,16 +12,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import {lectures, login} from "../utils/routes";
+import {lectures, login, registr} from "../utils/routes";
 import {useNavigate} from "react-router-dom";
 
 const pages = [
     {name: 'See all teachers', path: lectures},
     {name: 'See all study courses', path: '/'},
-    {name: 'Login', path: login}
+    {name: 'Login', path: login},
+    {name: 'Sign Out', path: registr},
 ]
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
+const settings = [{name: 'Profile', path: '/student'}, {name: 'Dashboard', path: '/'}, 'Logout'];
 function ResponsiveAppBar() {
     const navigate = useNavigate();
 
@@ -36,12 +36,12 @@ function ResponsiveAppBar() {
     };
 
     const handleCloseNavMenu = (event, path) => {
-        console.log(path)
         navigate(path, {replace: true})
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
+    const handleCloseUserMenu = (path) => {
+        navigate(path, {replace: true})
         setAnchorElUser(null);
     };
 
@@ -158,9 +158,15 @@ function ResponsiveAppBar() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                typeof setting === 'object' ? (
+                                <MenuItem key={setting.name} onClick={() => handleCloseUserMenu(setting.path)}>
+                                    <Typography textAlign="center">{setting.name}</Typography>
                                 </MenuItem>
+                                ) : (
+                                    <MenuItem key={setting}>
+                                        <Typography textAlign="center">{setting}</Typography>
+                                    </MenuItem>
+                                )
                             ))}
                         </Menu>
                     </Box>
