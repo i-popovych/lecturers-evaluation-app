@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+.icon {
+  color: yellow;
+  transform: scale(2);
+  margin-right: 10px;
+}
+
+.icon-div{
+  
+  margin-top: 20px;
+  margin-right: 10px;
+  background-color: inherit;
+  border-radius: 50%;
+}
+
+.icon-div :hover{
+  cursor: pointer;
+  
+  transform: scale(2.2)
+}
+
+.card {
+  background-color: blue;
+  color: white;
+}
+
+
