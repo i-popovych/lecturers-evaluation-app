@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Rating } from '@mui/material';
+import {useEffect, useState} from "react";
 
 
 const theme = createTheme();
@@ -16,6 +17,14 @@ const theme = createTheme();
 
 
 export default function ProfessorProfile({ name = 'Professor Name', address = 'professor@lnu.edu.ua', faculty = 'Faculty of Electronics', rating = 4.4 }) {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const fetch = async () => {
+            
+        }
+    }, [])
+
 
     return (
         <ThemeProvider theme={theme}>

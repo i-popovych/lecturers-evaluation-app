@@ -71,6 +71,7 @@ export default function LoginForm() {
         setIsLoading(true)
         try {
             const res = await AuthAPI.loginUser(data.get('email'), data.get('password'))
+            debugger
             setCurrentUser(res)
         }
         catch (e) {
