@@ -11,35 +11,59 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {AuthAPI} from "../api/AuthAPI";
+import { FormControl, FormLabel, Radio, RadioGroup } from '@mui/material';
+
 
 const theme = createTheme();
 
-export default function LoginForm() {
+export default function RegisterForm() {
 
+    const [name, setName] = React.useState('')
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
+    const [nameDirty, setNameDirty] = React.useState(false)
     const [emailDirty, setEmailDirty] = React.useState(false)
     const [passwordDirty, setPasswordDirty] = React.useState(false)
+    const [nameError, setNameError] = React.useState('Поле Full name не може бути пустим')
     const [emailError, setEmailError] = React.useState('Поле email не може бути пустим')
     const [passwordError, setPasswordError] = React.useState('Поле пароля не може бути пустим')
+    const [formValid, setFormValid] = React.useState(false)
+
+    React.useEffect(() => {
+        if(emailError ||  passwordError || nameError) {
+            setFormValid(false)
+        }
+        else {
+            setFormValid(true)
+        }
+    })
 
 
-    const emailHendler = (e) =>{
+    const emailHendler = (e) => {
         setEmail(e.target.value)
         const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        if(!re.test(String(e.target.value).toLowerCase())){
+        if (!re.test(String(e.target.value).toLowerCase())) {
             setEmailError('Email error')
         } else {
             setEmailError('')
         }
     }
 
-    const passwordHendler = (e) =>{
+    const nameHendler = (e) => {
+        setName(e.target.value)
+        const re = /^([\w]{3,})+\s+([\w\s]{3,})+$/i;
+        if (!re.test(String(e.target.value).toLowerCase())) {
+            setNameError('Введіть коректно ім*я та прізвище')
+        } else {
+            setNameError('')
+        }
+    }
+
+    const passwordHendler = (e) => {
         setPassword(e.target.value)
-        if (e.target.value.length < 3 || e.target.value.length > 8){
-            setPasswordError('Пароль повинен містити від 3 до 8 символів')
-            if(!e.target.value){
+        if (e.target.value.length < 8 || e.target.value.length > 16) {
+            setPasswordError('Пароль повинен містити від 8 до 16 символів')
+            if (!e.target.value) {
                 setPasswordError('Password error')
             }
         } else {
@@ -55,13 +79,22 @@ export default function LoginForm() {
             case 'password':
                 setPasswordDirty(true)
                 break;
+            case 'name':
+                setNameDirty(true)
+                break;
         }
     }
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        await AuthAPI.loginUser(data.get('email'), data.get('password'))
+        console.log({
+            name: data.get('name'),
+            email: data.get('email'),
+            password: data.get('password'),
+            stydent: data.get('stydent'),
+            professor: data.get('professor')
+        });
     };
 
     return (
@@ -78,10 +111,24 @@ export default function LoginForm() {
                 >
                     <Avatar alt="Remy Sharp" src="" />
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        Sign Up
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                        {(emailDirty && emailError) && <div style={{color: 'red'}} >{emailError}</div> }
+                        {(nameDirty && nameError) && <div style={{ color: 'red' }} >{nameError}</div>}
+                        <TextField
+                            onChange={e => nameHendler(e)}
+                            value={name}
+                            onBlur={e => handleBlur(e)}
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="name"
+                            label="Full name"
+                            name="name"
+                            autoComplete="name"
+                            autoFocus
+                        />
+                        {(emailDirty && emailError) && <div style={{ color: 'red' }} >{emailError}</div>}
                         <TextField
                             onChange={e => emailHendler(e)}
                             value={email}
@@ -95,7 +142,7 @@ export default function LoginForm() {
                             autoComplete="email"
                             autoFocus
                         />
-                        {(passwordDirty && passwordError) && <div style={{color: 'red'}} >{passwordError}</div> }
+                        {(passwordDirty && passwordError) && <div style={{ color: 'red' }} >{passwordError}</div>}
                         <TextField
                             onChange={e => passwordHendler(e)}
                             value={password}
@@ -109,27 +156,35 @@ export default function LoginForm() {
                             id="password"
                             autoComplete="current-password"
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
+
+                        <FormControl>
+                            <FormLabel id="demo-row-radio-buttons-group-label">Who i?</FormLabel>
+                            <RadioGroup
+                                row
+                                aria-labelledby="demo-row-radio-buttons-group-label"
+                                name="row-radio-buttons-group"
+                            >
+                                <FormControlLabel name='stydent' value="stydent" control={<Radio />} label="I'm stydent" />
+                                <FormControlLabel name='professor' value="professor" control={<Radio />} label="I'm professor" />
+
+                            </RadioGroup>
+                        </FormControl>
+
                         <Button
+                            disabled={!formValid}
+                            href='https://www.youtube.com/'
                             type="submit"
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign In
+                            Sign Up
                         </Button>
                         <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
+
                             <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                <Link href="#" variant="body2" sx={{ ml: 15 }} >
+                                    {"Do have an account? Sign In"}
                                 </Link>
                             </Grid>
                         </Grid>

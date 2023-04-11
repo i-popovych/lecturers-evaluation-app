@@ -8,7 +8,7 @@ const AppRouter = () => {
             <Routes>
                 {
                     publicRoutes.map(i => {
-                        return <Route key={i.path} path={i.path} element={<LecturesList/>}/>
+                        return <Route key={i.path} path={i.path} element={i.element}/>
                     })
                 }
             </Routes>

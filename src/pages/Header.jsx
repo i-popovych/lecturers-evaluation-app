@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {lectures, login} from "../utils/routes";
+import {useNavigate} from "react-router-dom";
 
 const pages = [
     {name: 'See all teachers', path: lectures},
@@ -22,6 +23,8 @@ const pages = [
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
+    const navigate = useNavigate();
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -32,8 +35,9 @@ function ResponsiveAppBar() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = (redirect) => {
-        console.log()
+    const handleCloseNavMenu = (event, path) => {
+        console.log(path)
+        navigate(path, {replace: true})
         setAnchorElNav(null);
     };
 
@@ -94,7 +98,7 @@ function ResponsiveAppBar() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                                <MenuItem key={page.name} onClick={() => handleCloseNavMenu(page.path)}>
                                     <Typography textAlign="center">{page.name}</Typography>
                                 </MenuItem>
                             ))}
@@ -123,7 +127,7 @@ function ResponsiveAppBar() {
                         {pages.map((page) => (
                             <Button
                                 key={page.name}
-                                onClick={handleCloseNavMenu}
+                                onClick={(e) => handleCloseNavMenu(e, page.path)}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {page.name}
