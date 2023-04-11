@@ -12,6 +12,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {AuthAPI} from "../api/AuthAPI";
+import {useContext, useState} from "react";
+import {AuthContext} from "../App";
+
 
 const theme = createTheme();
 
@@ -23,6 +26,10 @@ export default function LoginForm() {
     const [passwordDirty, setPasswordDirty] = React.useState(false)
     const [emailError, setEmailError] = React.useState('Поле email не може бути пустим')
     const [passwordError, setPasswordError] = React.useState('Поле пароля не може бути пустим')
+
+    const [isLoading, setIsLoading] = useState(false)
+    const [message, setMessage] = useState(null)
+    const {setCurrentUser} = useContext(AuthContext)
 
 
     const emailHendler = (e) =>{
@@ -61,7 +68,16 @@ export default function LoginForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        await AuthAPI.loginUser(data.get('email'), data.get('password'))
+        setIsLoading(true)
+        try {
+            const res = await AuthAPI.loginUser(data.get('email'), data.get('password'))
+            setCurrentUser(res)
+        }
+        catch (e) {
+            setMessage('Some error :(')
+        } finally {
+            setIsLoading(false)
+        }
     };
 
     return (

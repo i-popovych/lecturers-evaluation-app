@@ -10,7 +10,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { FormControl, FormLabel, Radio, RadioGroup } from '@mui/material';
+import {Alert, FormControl, FormLabel, Radio, RadioGroup} from '@mui/material';
+import {useState} from "react";
+import {AuthAPI} from "../api/AuthAPI";
 
 
 const theme = createTheme();
@@ -27,6 +29,9 @@ export default function RegisterForm() {
     const [emailError, setEmailError] = React.useState('Поле email не може бути пустим')
     const [passwordError, setPasswordError] = React.useState('Поле пароля не може бути пустим')
     const [formValid, setFormValid] = React.useState(false)
+
+    const [message, setMessage] = useState(null)
+    const [isLoading, setIsLoading] = useState(false);
 
     React.useEffect(() => {
         if(emailError ||  passwordError || nameError) {
@@ -84,16 +89,27 @@ export default function RegisterForm() {
         }
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
+        const jsonData = {
             name: data.get('name'),
             email: data.get('email'),
             password: data.get('password'),
             stydent: data.get('stydent'),
             professor: data.get('professor')
-        });
+        }
+
+        const role = data.get('stydent') ? 'student' : 'lecturer'
+        setIsLoading(true)
+        try {
+            const res = await AuthAPI.registrationUser(jsonData.email, jsonData.name, jsonData.password, role)
+            setMessage('Ви успішно зареєструвались')
+        } catch (e) {
+            setMessage('Якась помилка ):')
+        } finally {
+            setIsLoading(false)
+        }
     };
 
     return (
@@ -163,9 +179,9 @@ export default function RegisterForm() {
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
                             >
-                                <FormControlLabel name='stydent' value="stydent" control={<Radio />} label="I'm stydent" />
+                                <FormControlLabel name='stydent' value="stydent" control={<Radio />} label="I'm student" />
                                 <FormControlLabel name='professor' value="professor" control={<Radio />} label="I'm professor" />
-                                
+
                             </RadioGroup>
                         </FormControl>
 
@@ -178,8 +194,25 @@ export default function RegisterForm() {
                         >
                             Sign Up
                         </Button>
+                        {
+                            isLoading && (
+                                <Grid container>
+                                    <Grid item>
+                                        <Alert>Loading...</Alert>
+                                    </Grid>
+                                </Grid>
+                            )
+                        }
+                        {
+                            message && (
+                                <Grid container>
+                                    <Grid item sx={{ml: 9}}>
+                                        <Alert>{message}</Alert>
+                                    </Grid>
+                                </Grid>
+                            )
+                        }
                         <Grid container>
-
                             <Grid item>
                                 <Link href="#" variant="body2" sx={{ ml: 15 }} >
                                     {"Do have an account? Sign In"}

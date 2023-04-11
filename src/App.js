@@ -1,12 +1,14 @@
-import React, {createContext} from 'react';
+import React, {createContext, useState} from 'react';
 import Header from "./pages/Header";
 import AppRouter from "./components/AppRouter";
 import "./App.css"
-const AuthContext = createContext(null)
+export const AuthContext = createContext(null)
 
 const App = () => {
+    const [currentUser, setCurrentUser] = useState(null);
+
     return (
-        <AuthContext.Provider value={null}>
+        <AuthContext.Provider value={{currentUser, setCurrentUser}}>
             <Header/>
             <AppRouter/>
         </AuthContext.Provider>
