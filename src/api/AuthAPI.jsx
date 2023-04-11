@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const base = axios.create({
-    baseURL: "http://testing-env.eba-jequgxzt.eu-north-1.elasticbeanstalk.com/"
+    baseURL: "http://localhost:5000/"
 })
 
 export const AuthAPI = {

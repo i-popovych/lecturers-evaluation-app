@@ -14,7 +14,7 @@ const theme = createTheme();
 
 
 
-export default function Album({ name = 'Name Student', address = 'vlad@lnu.edu.ua', faculty = 'Faculty of Electronics', course = '2' }) {
+export default function StudentProfile({ name = 'Name Student', address = 'vlad@lnu.edu.ua', faculty = 'Faculty of Electronics', course = '2' }) {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -50,7 +50,7 @@ export default function Album({ name = 'Name Student', address = 'vlad@lnu.edu.u
                                     id="panel1a-header"
                                 >
                                     <Typography sx={{ml: 20}} variant="h6" align="center" color="text.secondary" paragraph>
-                                    Information with you</Typography>
+                                        Information with you</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
@@ -78,7 +78,7 @@ export default function Album({ name = 'Name Student', address = 'vlad@lnu.edu.u
                                     id="panel1a-header"
                                 >
                                     <Typography sx={{ml: 17}} variant="h6" align="center" color="text.secondary" paragraph>
-                                    Information with your rating</Typography>
+                                        Information with your rating</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
@@ -97,15 +97,6 @@ export default function Album({ name = 'Name Student', address = 'vlad@lnu.edu.u
                             </Accordion>
 
                         </div>
-                       {/*} <Stack
-                            sx={{ pt: 4 }}
-                            direction="row"
-                            spacing={2}
-                            justifyContent="center"
-                        >
-                            <Button variant="contained">Main call to action</Button>
-                            <Button variant="outlined">Secondary action</Button>
-                </Stack>*/}
                     </Container>
                 </Box>
 

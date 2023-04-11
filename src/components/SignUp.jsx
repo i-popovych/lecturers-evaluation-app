@@ -171,7 +171,6 @@ export default function RegisterForm() {
 
                         <Button
                             disabled={!formValid}
-                            href='https://www.youtube.com/'
                             type="submit"
                             fullWidth
                             variant="contained"
