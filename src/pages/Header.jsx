@@ -16,8 +16,7 @@ import {lectures, login, registr} from "../utils/routes";
 import {useNavigate} from "react-router-dom";
 
 const pages = [
-    {name: 'See all teachers', path: lectures},
-    {name: 'See all study courses', path: '/'},
+    {name: 'All teachers', path: lectures},
     {name: 'Login', path: login},
     {name: 'Sign Out', path: registr},
 ]
