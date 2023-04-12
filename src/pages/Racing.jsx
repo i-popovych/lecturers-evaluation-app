@@ -36,15 +36,20 @@ export default function Racing() {
                 sum.push(rate[i].fair)
             }
             let result = sum.reduce((sum, current) => sum + current, 0);
+            debugger
             result = result / sum.length
 
             setName(res.data.name)
-            setRating(result.toFixed(2))
+            const num = result.toFixed(2)
+            setRating(num)
         }
         fetch()
     }, [])
 
     const handleSubmit = async () => {
+        if(currentUser.role === 'lecturer') {
+            alert('Ви не можете ставити оцінку іншим викладачам')
+        }
         if (!currentUser) {
             alert('ви не авторизовані!')
             return
@@ -59,7 +64,7 @@ export default function Racing() {
 
 
 
-// if (!name) return <Alert>Loading...</Alert>
+if (!name) return <Alert>Loading...</Alert>
 
 return (
     <ThemeProvider theme={theme}>
@@ -91,7 +96,9 @@ return (
                         <p style={{marginBottom: '2px'}}>Average rating</p>
                         <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly value={rating}/>
                         <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                            {rating}/5
+                            {
+                                !isNaN(rating) ? rating : 'ще не отримав жодних оцінок'
+                            }
                         </Typography>
                     </Typography>
                 </Container>
