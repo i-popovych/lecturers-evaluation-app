@@ -58,7 +58,10 @@ html, body, #root {
 
 .icon-div :hover{
   cursor: pointer;
-  opacity: 0.7;
+}
+
+.icon:hover{
+  color: yellow;
 }
 
 .card {

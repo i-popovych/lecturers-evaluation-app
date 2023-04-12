@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext} from 'react';
+import { useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,22 +13,22 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import {allListProfessor, lectures, login, registr} from "../utils/routes";
-import {useNavigate} from "react-router-dom";
-import {AuthContext} from "../App";
+import { allListProfessor, lectures, login, registr } from "../utils/routes";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../App";
 
 
 function ResponsiveAppBar() {
-    const {currentUser} = useContext(AuthContext)
+    const { currentUser } = useContext(AuthContext)
 
     const pages = !currentUser ? [
-        {name: 'All teachers', path: allListProfessor},
-        {name: 'Login', path: login},
-        {name: 'Sign Out', path: registr},
+        { name: 'All teachers', path: allListProfessor },
+        { name: 'Login', path: login },
+        { name: 'Sign Out', path: registr },
     ] : [
-        {name: 'All teachers', path: allListProfessor},
+        { name: 'All teachers', path: allListProfessor },
     ]
-    const settings = [{name: 'Profile', path: '/student'}, {name: 'Dashboard', path: '/'}, {name: 'Logout', path: '/'}];
+    const settings = [{ name: 'Profile', path: '/student' }, { name: 'Dashboard', path: '/' }, { name: 'Logout', path: '/' }];
 
     const navigate = useNavigate();
 
@@ -43,12 +43,12 @@ function ResponsiveAppBar() {
     };
 
     const handleCloseNavMenu = (event, path) => {
-        navigate(path, {replace: true})
+        navigate(path, { replace: true })
         setAnchorElNav(null);
     };
 
     const handleCloseUserMenu = (path) => {
-        navigate(path, {replace: true})
+        navigate(path, { replace: true })
         setAnchorElUser(null);
     };
 
@@ -56,7 +56,9 @@ function ResponsiveAppBar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                   
+                 
+                   <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -155,7 +157,7 @@ function ResponsiveAppBar() {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar  />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -176,9 +178,9 @@ function ResponsiveAppBar() {
                         >
                             {settings.map((setting) => (
                                 typeof setting === 'object' ? (
-                                <MenuItem key={setting.name} onClick={() => handleCloseUserMenu(setting.path)}>
-                                    <Typography textAlign="center">{setting.name}</Typography>
-                                </MenuItem>
+                                    <MenuItem key={setting.name} onClick={() => handleCloseUserMenu(setting.path)}>
+                                        <Typography textAlign="center">{setting.name}</Typography>
+                                    </MenuItem>
                                 ) : (
                                     <MenuItem key={setting}>
                                         <Typography textAlign="center">{setting}</Typography>
@@ -189,7 +191,9 @@ function ResponsiveAppBar() {
                     </Box>
                 </Toolbar>
             </Container>
+            
         </AppBar>
+        
     );
 }
 export default ResponsiveAppBar;

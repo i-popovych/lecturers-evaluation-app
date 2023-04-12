@@ -13,8 +13,9 @@ export default function ListProfessor({isRating = false,  name = 'Vladyslav Balu
         const [rate, setRate] = React.useState(isRating)
 
     const handleRating = () => {
-        setRate((prev) => !prev )
-        console.log('fas')
+        setRate((prev) => !prev )   
+        navigate(`${rating}/`+id)
+        
     }
     const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ export default function ListProfessor({isRating = false,  name = 'Vladyslav Balu
                 <div onClick={handleRating} className='icon-div' >
                     
                     <StarIcon 
-                     onClick={() => navigate(`${rating}/`+id)}
+                    // onClick={() => navigate(`${rating}/`+id)}
                      className='icon' sx={{color: 'yellow'}} />
                 </div>
                 <ListItemText
