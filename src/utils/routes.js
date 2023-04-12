@@ -19,7 +19,7 @@ export const publicRoutes = [
     {path: login, element: <LoginForm/>},
     {path: registr, element: <SignUp/>},
     {path: studentProfile, element: <StudentProfile/>},
-    {path: `${allListProfessor}/item/:id`, element: <ProfessorProfile/>},
+    {path: `/${allListProfessor}/item/:id`, element: <ProfessorProfile/>},
     {path: `${allListProfessor}/${rating}` + '/:id', element: <Racing/>},
     {path: allListProfessor, element: <AllListProfessor/>}
 ]

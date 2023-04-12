@@ -25,21 +25,18 @@ export default function StudentProfile({faculty = 'Faculty of Electronics', cour
     const [isLoafing, setIsLoading] = useState(true)
     // const [address, setAddress] = useState(null)
     const navigate = useNavigate()
-
-    useEffect(() => {
-        const fetch = async () => {
-            const res = await RatingAPI.getStudentRatingHistory(currentUser.id)
-            // "login": "example13@lnu.edu.ua",
-            //     "name": "Example13 Example13",
-            debugger
-        }
-        fetch()
-    }, [])
+    //
+    // useEffect(() => {
+    //     const fetch = async () => {
+    //         const res = await RatingAPI.getStudentRatingHistory(currentUser.id)
+    //         // "login": "example13@lnu.edu.ua",
+    //         //     "name": "Example13 Example13",
+    //         debugger
+    //     }
+    //     fetch()
+    // }, [])
 
     if (!currentUser) return <Alert>Ви не авторизовані</Alert>
-    if(currentUser.role === 'lecturer') {
-        navigate(`/${allListProfessor}/item/${currentUser.id}`)
-    }
     // if(!name) return <Alert>loading...</Alert>
 
     return (
