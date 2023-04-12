@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext} from 'react';
+import { useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -20,16 +20,16 @@ import logo from "../assets/logo.png";
 
 
 function ResponsiveAppBar() {
-    const {currentUser} = useContext(AuthContext)
+    const { currentUser } = useContext(AuthContext)
 
     const pages = !currentUser ? [
-        {name: 'All teachers', path: allListProfessor},
-        {name: 'Login', path: login},
-        {name: 'Sign Out', path: registr},
+        { name: 'All teachers', path: allListProfessor },
+        { name: 'Login', path: login },
+        { name: 'Sign Out', path: registr },
     ] : [
-        {name: 'All teachers', path: allListProfessor},
+        { name: 'All teachers', path: allListProfessor },
     ]
-    const settings = [{name: 'Profile', path: '/student'}, {name: 'Dashboard', path: '/'}, {name: 'Logout', path: '/'}];
+    const settings = [{ name: 'Profile', path: '/student' }, { name: 'Dashboard', path: '/' }, { name: 'Logout', path: '/' }];
 
     const navigate = useNavigate();
 
@@ -46,12 +46,17 @@ function ResponsiveAppBar() {
     };
 
     const handleCloseNavMenu = (event, path) => {
-        navigate(path, {replace: true})
+        navigate(path, { replace: true })
         setAnchorElNav(null);
     };
 
+<<<<<<< HEAD
     const handleCloseUserMenu = (event, path) => {
         navigate(path, {replace: true})
+=======
+    const handleCloseUserMenu = (path) => {
+        navigate(path, { replace: true })
+>>>>>>> c40cf55a3bedb16b20fd18858f9d6f50ac7dd0d3
         setAnchorElUser(null);
     };
 
@@ -59,10 +64,8 @@ function ResponsiveAppBar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                        {/*<Box sx={{width: "170px", height: "120px"}}>*/}
-                        {/*    <img src={logo} alt="logo" style={{width: "170px", height: "120px"}}/>*/}
-                        {/*</Box>*/}
-                    <Typography
+                    <Typography 
+                        className='mernTeam'                   
                         variant="h6"
                         noWrap
                         component="a"
@@ -138,6 +141,7 @@ function ResponsiveAppBar() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
+                                className='mernTeam'
                                 key={page.name}
                                 onClick={(e) => handleCloseNavMenu(e, page.path)}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -146,21 +150,34 @@ function ResponsiveAppBar() {
                             </Button>
                         ))}
                     </Box>
+                   
                     <Box>
-                        {currentUser && <button onClick={
-                            () => {
-                                localStorage.removeItem('id')
-                                window.location.reload()
-                            }
-                        }>Log out</button>}
-                    </Box>
-                    <Box>
-                        {currentUser && <span>{currentUser.name + ': ' + currentUser.role}</span>}
-                    </Box>
+                        {currentUser && <span className='user' >
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                component="a"
+                                href="/"
+                                sx={{
+                                    mt: 4,
+                                    mr: 2,
+                                    display: { xs: 'none', md: 'flex' },
+                                    fontFamily: 'monospace',
+                                    fontWeight: 700,
+                                    letterSpacing: '.3rem',
+                                    color: 'inherit',
+                                    textDecoration: 'none',
+                                }}
+                            >
+                                {currentUser.name + ': ' + currentUser.role} 
+                            </Typography>
+
+                            <span className='userName' > </span> <span className='userRole' > </span></span>
+                        }</Box>
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -181,9 +198,15 @@ function ResponsiveAppBar() {
                         >
                             {settings.map((setting) => (
                                 typeof setting === 'object' ? (
+<<<<<<< HEAD
                                 <MenuItem key={setting.name} onClick={(e) => handleCloseUserMenu(e, setting.path)}>
                                     <Typography textAlign="center">{setting.name}</Typography>
                                 </MenuItem>
+=======
+                                    <MenuItem key={setting.name} onClick={() => handleCloseUserMenu(setting.path)}>
+                                        <Typography textAlign="center">{setting.name}</Typography>
+                                    </MenuItem>
+>>>>>>> c40cf55a3bedb16b20fd18858f9d6f50ac7dd0d3
                                 ) : (
                                     <MenuItem key={setting}>
                                         <Typography textAlign="center">{setting}</Typography>
@@ -194,7 +217,9 @@ function ResponsiveAppBar() {
                     </Box>
                 </Toolbar>
             </Container>
+
         </AppBar>
+
     );
 }
 export default ResponsiveAppBar;
