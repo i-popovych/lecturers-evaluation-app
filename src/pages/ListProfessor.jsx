@@ -8,22 +8,26 @@ import StarIcon from '@mui/icons-material/Star';
 import {useNavigate} from "react-router-dom";
 import {allListProfessor, rating} from "../utils/routes";
 
-export default function ListProfessor({isRating = true,  name = 'Vladyslav Balushka ', faculty = 'Philosophy  ', email = 'some email', id }) {
+export default function ListProfessor({isRating = false,  name = 'Vladyslav Balushka ', faculty = 'Philosophy  ', email = 'some email', id }) {
+
+        const [rate, setRate] = React.useState(isRating)
 
     const handleRating = () => {
-        //go to the evaluation page
+        setRate((prev) => !prev )
         console.log('fas')
     }
     const navigate = useNavigate();
 
-    if (isRating) {        
+    if (rate) {        
     return (
         <List sx={{  ml: 60,  width: '100%', maxWidth: 460, bgcolor: 'background.paper' }}>
             
             <ListItem alignItems="flex-start">
                 <div onClick={handleRating} className='icon-div' >
                     
-                    <StarIcon className='icon' sx={{color: 'yellow'}} />
+                    <StarIcon 
+                     onClick={() => navigate(`${rating}/`+id)}
+                     className='icon' sx={{color: 'yellow'}} />
                 </div>
                 <ListItemText
                     primary={name}

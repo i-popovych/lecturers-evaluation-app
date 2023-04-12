@@ -28,9 +28,16 @@ export default function Racing() {
         const fetch = async () => {
             const res = await RatingAPI.getLectureItem(id)
             const rate = await RatingAPI.getRating(id)
-            console.log(rate)
+            const z = rate.data
+            console.log(rate.data)
+            const fair = z[0].fair;
+            const matherial = z[0].matherial
+            const quality = z[0].quality
+            const sum = ((fair + matherial + quality) / 3).toFixed(1)
+            console.log(sum)
             debugger
             setName(res.data.name)
+            setRating(sum )
         }
         fetch()
     }, [])
