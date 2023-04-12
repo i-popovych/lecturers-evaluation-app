@@ -27,17 +27,19 @@ export default function Racing() {
     useEffect(() => {
         const fetch = async () => {
             const res = await RatingAPI.getLectureItem(id)
-            const rate = await RatingAPI.getRating(id)
-            const z = rate.data
-            console.log(rate.data)
-            const fair = z[0].fair;
-            const matherial = z[0].matherial
-            const quality = z[0].quality
-            const sum = ((fair + matherial + quality) / 3).toFixed(1)
-            console.log(sum)
-            debugger
+            let rate = await RatingAPI.getRating(id)
+            rate = rate.data
+            let sum = [];
+            for (let i = 0; i < rate.length; i++) {
+                sum.push(rate[i].quality)
+                sum.push(rate[i].matherial)
+                sum.push(rate[i].fair)
+            }
+            let result = sum.reduce((sum, current) => sum + current, 0);
+            result = result / sum.length
+
             setName(res.data.name)
-            setRating(sum )
+            setRating(result.toFixed(2))
         }
         fetch()
     }, [])
