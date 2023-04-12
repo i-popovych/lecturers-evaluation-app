@@ -31,6 +31,7 @@ export default function ListProfessor({isRating = false,  name = 'Vladyslav Balu
                      className='icon' sx={{color: 'yellow'}} />
                 </div>
                 <ListItemText
+                    sx={{cursor: 'pointer'}}
                     primary={name}
                     onClick={() => {
                         navigate(`${rating}/`+id)

@@ -45,8 +45,8 @@ export default function LoginForm() {
 
     const passwordHendler = (e) =>{
         setPassword(e.target.value)
-        if (e.target.value.length < 3 || e.target.value.length > 8){
-            setPasswordError('Пароль повинен містити від 3 до 8 символів')
+        if (e.target.value.length < 3 || e.target.value.length > 12){
+            setPasswordError('Пароль повинен містити від 3 до 12 символів')
             if(!e.target.value){
                 setPasswordError('Password error')
             }

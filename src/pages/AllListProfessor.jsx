@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import ListProfessor from './ListProfessor'
-import {RatingAPI} from "../api/RatingAPI";
-import {Alert} from "@mui/material";
+import { RatingAPI } from "../api/RatingAPI";
+import { Alert, CircularProgress } from "@mui/material";
 
 const AllListProfessor = () => {
     const [lectures, setLecture] = useState(null)
@@ -21,7 +21,6 @@ const AllListProfessor = () => {
                         id: i.data.id,
                         name: i.data.name,
                         email: i.data.login,
-                        faculty: 'some faculty'
                     }
                 })
                 setLecture(res2)
@@ -33,13 +32,16 @@ const AllListProfessor = () => {
     }, [])
 
 
-    if (!lectures) return <Alert>Loading</Alert>
+    if (!lectures) return <div style={{position: 'absolute', top: '400px', left: '700px'}} >
+            <CircularProgress color="inherit" />
+         </div> 
+    
 
     return (
         <div>
-            {lectures.map((u) => <ListProfessor key={u.id} name={u.name} email={u.email} 
-                                                id={u.id}
-                                                isRating={u.isRating}/>)}
+            {lectures.map((u) => <ListProfessor key={u.id} name={u.name} email={u.email}
+                id={u.id}
+                isRating={u.isRating} />)}
         </div>
     )
 }

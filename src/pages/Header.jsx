@@ -57,7 +57,8 @@ function ResponsiveAppBar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Typography
+                    <Typography 
+                        className='mernTeam'                   
                         variant="h6"
                         noWrap
                         component="a"
@@ -133,6 +134,7 @@ function ResponsiveAppBar() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
+                                className='mernTeam'
                                 key={page.name}
                                 onClick={(e) => handleCloseNavMenu(e, page.path)}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -150,7 +152,7 @@ function ResponsiveAppBar() {
                                 component="a"
                                 href="/"
                                 sx={{
-                                    mt: 5,
+                                    mt: 4,
                                     mr: 2,
                                     display: { xs: 'none', md: 'flex' },
                                     fontFamily: 'monospace',
