@@ -74,3 +74,16 @@ html, body, #root {
   transform: rotate(0.9turn);
 }
 
+.user{
+  margin-right: 20px;
+}
+
+.userName{
+  color: #282c34;
+  font-size: 24px;
+}
+
+.userRole{
+  color: aqua;
+  font-size: 24px;
+}

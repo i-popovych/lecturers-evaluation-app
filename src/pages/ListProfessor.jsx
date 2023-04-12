@@ -8,7 +8,7 @@ import StarIcon from '@mui/icons-material/Star';
 import {useNavigate} from "react-router-dom";
 import {allListProfessor, rating} from "../utils/routes";
 
-export default function ListProfessor({isRating = false,  name = 'Vladyslav Balushka ', faculty = 'Philosophy  ', email = 'some email', id }) {
+export default function ListProfessor({isRating = false,  name = 'Vladyslav Balushka ', email = 'some email', id }) {
 
         const [rate, setRate] = React.useState(isRating)
 
@@ -38,14 +38,7 @@ export default function ListProfessor({isRating = false,  name = 'Vladyslav Balu
                     }
                     secondary={
                         <React.Fragment>
-                            <Typography
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                            >
-                                <b>Faculty:</b> {faculty}
-                            </Typography>
+                           
                             <Typography>
                                 <b>Email:</b> {email}
                             </Typography>
@@ -75,14 +68,6 @@ export default function ListProfessor({isRating = false,  name = 'Vladyslav Balu
                 }
                 secondary={
                     <React.Fragment>
-                        <Typography
-                            sx={{ display: 'inline' }}
-                            component="span"
-                            variant="body2"
-                            color="text.primary"
-                        >
-                            <b>Faculty:</b> {faculty}
-                        </Typography>
                         <Typography>
                             <b>Email:</b> {email}
                         </Typography>

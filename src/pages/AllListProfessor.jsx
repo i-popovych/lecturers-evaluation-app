@@ -37,7 +37,7 @@ const AllListProfessor = () => {
 
     return (
         <div>
-            {lectures.map((u) => <ListProfessor key={u.id} name={u.name} email={u.email} faculty={u.faculty}
+            {lectures.map((u) => <ListProfessor key={u.id} name={u.name} email={u.email} 
                                                 id={u.id}
                                                 isRating={u.isRating}/>)}
         </div>
