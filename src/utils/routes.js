@@ -5,6 +5,7 @@ import SignUp from "../components/SignUp"
 import ProfessorProfile from "../pages/ProfessorProfile";
 import Racing from "../pages/Racing";
 import AllListProfessor from "../pages/AllListProfessor";
+import { Navigate } from "react-router-dom";
 
 export const lectures = 'lectures'
 export const login = 'login'
@@ -21,5 +22,6 @@ export const publicRoutes = [
     {path: studentProfile, element: <StudentProfile/>},
     {path: `/${allListProfessor}/item/:id`, element: <ProfessorProfile/>},
     {path: `${allListProfessor}/${rating}` + '/:id', element: <Racing/>},
-    {path: allListProfessor, element: <AllListProfessor/>}
+    {path: allListProfessor, element: <AllListProfessor/>},
+    {path: '/', element: <Navigate to={studentProfile}/>}
 ]

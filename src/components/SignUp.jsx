@@ -10,9 +10,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {Alert, FormControl, FormLabel, Radio, RadioGroup} from '@mui/material';
-import {useState} from "react";
-import {AuthAPI} from "../api/AuthAPI";
+import { Alert, CircularProgress, FormControl, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { useState } from "react";
+import { AuthAPI } from "../api/AuthAPI";
 
 
 const theme = createTheme();
@@ -34,7 +34,7 @@ export default function RegisterForm() {
     const [isLoading, setIsLoading] = useState(false);
 
     React.useEffect(() => {
-        if(emailError ||  passwordError || nameError) {
+        if (emailError || passwordError || nameError) {
             setFormValid(false)
         }
         else {
@@ -198,7 +198,9 @@ export default function RegisterForm() {
                             isLoading && (
                                 <Grid container>
                                     <Grid item>
-                                        <Alert>Loading...</Alert>
+                                        <div style={{ position: 'absolute', top: '400px', left: '700px' }} >
+                                            <CircularProgress color="inherit" />
+                                        </div>
                                     </Grid>
                                 </Grid>
                             )
@@ -206,8 +208,10 @@ export default function RegisterForm() {
                         {
                             message && (
                                 <Grid container>
-                                    <Grid item sx={{ml: 9}}>
-                                        <Alert>{message}</Alert>
+                                    <Grid item sx={{ ml: 9 }}>
+                                    <div style={{ position: 'absolute', top: '400px', left: '700px' }} >
+                                            <CircularProgress color="inherit" />
+                                        </div>
                                     </Grid>
                                 </Grid>
                             )

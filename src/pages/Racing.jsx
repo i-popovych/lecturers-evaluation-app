@@ -2,6 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+
+import {CircularProgress} from '@mui/material';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {Alert, Button, Card, CardActions, CardContent, CssBaseline, Paper, Rating} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
@@ -65,7 +67,9 @@ export default function Racing() {
 
 
 
-if (!name) return <Alert>Loading...</Alert>
+if (!name) return <div style={{position: 'absolute', top: '400px', left: '700px'}} >
+<CircularProgress color="inherit" />
+</div> 
 
 return (
     <ThemeProvider theme={theme}>
