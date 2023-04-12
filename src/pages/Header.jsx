@@ -57,12 +57,6 @@ function ResponsiveAppBar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                   
-                 
-                   <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                        {/*<Box sx={{width: "170px", height: "120px"}}>*/}
-                        {/*    <img src={logo} alt="logo" style={{width: "170px", height: "120px"}}/>*/}
-                        {/*</Box>*/}
                     <Typography
                         variant="h6"
                         noWrap
@@ -147,21 +141,34 @@ function ResponsiveAppBar() {
                             </Button>
                         ))}
                     </Box>
+                   
                     <Box>
-                        {currentUser && <button onClick={
-                            () => {
-                                localStorage.removeItem('id')
-                                window.location.reload()
-                            }
-                        }>Log out</button>}
-                    </Box>
-                    <Box>
-                        {currentUser && <span>{currentUser.name + ': ' + currentUser.role}</span>}
-                    </Box>
+                        {currentUser && <span className='user' >
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                component="a"
+                                href="/"
+                                sx={{
+                                    mt: 5,
+                                    mr: 2,
+                                    display: { xs: 'none', md: 'flex' },
+                                    fontFamily: 'monospace',
+                                    fontWeight: 700,
+                                    letterSpacing: '.3rem',
+                                    color: 'inherit',
+                                    textDecoration: 'none',
+                                }}
+                            >
+                                {currentUser.name + ': ' + currentUser.role} 
+                            </Typography>
+
+                            <span className='userName' > </span> <span className='userRole' > </span></span>
+                        }</Box>
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar  />
+                                <Avatar />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -195,9 +202,9 @@ function ResponsiveAppBar() {
                     </Box>
                 </Toolbar>
             </Container>
-            
+
         </AppBar>
-        
+
     );
 }
 export default ResponsiveAppBar;
