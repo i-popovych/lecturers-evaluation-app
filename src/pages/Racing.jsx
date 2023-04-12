@@ -3,19 +3,38 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Button, Card, CardActions, CardContent, CssBaseline, Paper, Rating } from '@mui/material';
+import {Alert, Button, Card, CardActions, CardContent, CssBaseline, Paper, Rating} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import {useEffect, useState} from "react";
+import {RatingAPI} from "../api/RatingAPI";
+import {useParams} from "react-router-dom";
 
 
 
 
 const theme = createTheme();
 
-export default function Racing({ name = 'Vladyslav Balushka', rating = 4.5 }) {
+export default function Racing() {
 
     const [value1, setValue1] = React.useState();
     const [value2, setValue2] = React.useState();
     const [value3, setValue3] = React.useState();
+
+    const [rating, setRating] = useState(0)
+    const [name, setName] = useState(null)
+    const {id} = useParams()
+
+    useEffect(() => {
+        const fetch = async () => {
+            const res = await RatingAPI.getLectureItem(id)
+            const rate = await RatingAPI.getRating(id)
+            console.log(rate)
+            debugger
+            setName(res.data.name)
+        }
+        fetch()
+    }, [])
+    if (!name) return <Alert>Loading...</Alert>
 
     return (
         <ThemeProvider theme={theme}>

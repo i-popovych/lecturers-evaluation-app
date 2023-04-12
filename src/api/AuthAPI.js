@@ -7,7 +7,7 @@ export const base = axios.create({
 export const AuthAPI = {
     loginUser: async (login, password) => {
         try {
-            base.post('login', {
+            return base.post('login', {
                 login, password
             })
         } catch (e) {

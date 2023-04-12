@@ -10,7 +10,7 @@ export const lectures = 'lectures'
 export const login = 'login'
 export const studentProfile = 'student'
 export const registr = 'registration'
-export const professorProfile = 'professor'
+// export const professorProfile = 'professor'
 export const rating = 'rating'
 export const allListProfessor = 'professors'
 
@@ -19,7 +19,7 @@ export const publicRoutes = [
     {path: login, element: <LoginForm/>},
     {path: registr, element: <SignUp/>},
     {path: studentProfile, element: <StudentProfile/>},
-    {path: professorProfile, element: <ProfessorProfile/>},
-    {path: rating, element: <Racing/>},
+    {path: `${allListProfessor}/item/:id`, element: <ProfessorProfile/>},
+    {path: `${allListProfessor}/${rating}` + '/:id', element: <Racing/>},
     {path: allListProfessor, element: <AllListProfessor/>}
 ]

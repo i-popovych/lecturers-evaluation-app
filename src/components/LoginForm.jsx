@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {AuthAPI} from "../api/AuthAPI";
 import {useContext, useState} from "react";
 import {AuthContext} from "../App";
+import {RatingAPI} from "../api/RatingAPI";
 
 
 const theme = createTheme();
@@ -70,9 +71,15 @@ export default function LoginForm() {
         const data = new FormData(event.currentTarget);
         setIsLoading(true)
         try {
-            const res = await AuthAPI.loginUser(data.get('email'), data.get('password'))
+            let res = await AuthAPI.loginUser(data.get('email'), data.get('password'))
+            localStorage.setItem('id', res.data)
+            try {
+                res = await RatingAPI.getStudentItem(res.data)
+            } catch (e) {
+                res = await RatingAPI.getLectureItem(res.data)
+            }
             debugger
-            setCurrentUser(res)
+            setCurrentUser(res.data)
         }
         catch (e) {
             setMessage('Some error :(')

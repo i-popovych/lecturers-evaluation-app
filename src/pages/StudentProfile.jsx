@@ -8,13 +8,34 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {createContext, useContext, useEffect, useState} from "react";
+import {AuthContext} from "../App";
+import {Alert} from "@mui/material";
+import {RatingAPI} from "../api/RatingAPI";
 
 
 const theme = createTheme();
 
 
 
-export default function StudentProfile({ name = 'Name Student', address = 'vlad@lnu.edu.ua', faculty = 'Faculty of Electronics', course = '2' }) {
+export default function StudentProfile({faculty = 'Faculty of Electronics', course = 'some course' }) {
+    const {currentUser} = useContext(AuthContext)
+    const [isLoafing, setIsLoading] = useState(true)
+    // const [address, setAddress] = useState(null)
+
+    useEffect(() => {
+        const fetch = async () => {
+            const res = await RatingAPI.getStudentRatingHistory(currentUser.id)
+            // "login": "example13@lnu.edu.ua",
+            //     "name": "Example13 Example13",
+            debugger
+        }
+        fetch()
+    }, [])
+
+    if (!currentUser) return <Alert>Ви не авторизовані</Alert>
+    // if(!name) return <Alert>loading...</Alert>
+
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -36,7 +57,7 @@ export default function StudentProfile({ name = 'Name Student', address = 'vlad@
                             color="text.primary"
                             gutterBottom
                         >
-                            {name}
+                            {currentUser.name}
                         </Typography>
                         <Typography variant="h5" align="center" color="text.secondary" paragraph>
                             Welcome to your personal account
@@ -54,10 +75,10 @@ export default function StudentProfile({ name = 'Name Student', address = 'vlad@
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                                        Your name: {name}
+                                        Your name: {currentUser.name}
                                     </Typography>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                                        Your address: {address}
+                                        Your address: {currentUser.email}
                                     </Typography>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
                                         Your faculty: {faculty}
@@ -82,10 +103,10 @@ export default function StudentProfile({ name = 'Name Student', address = 'vlad@
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                                        Your name: {name}
+                                        Your name: {currentUser.name}
                                     </Typography>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                                        Your address: {address}
+                                        Your address: {currentUser.login}
                                     </Typography>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
                                         Your faculty: {faculty}

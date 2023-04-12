@@ -5,14 +5,16 @@ import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import StarIcon from '@mui/icons-material/Star';
+import {useNavigate} from "react-router-dom";
+import {allListProfessor, rating} from "../utils/routes";
 
-export default function ListProfessor({isRating = true,  name = 'Vladyslav Balushka ', faculty = 'Philosophy  ', description = '  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam modi expedita' }) {
+export default function ListProfessor({isRating = true,  name = 'Vladyslav Balushka ', faculty = 'Philosophy  ', email = 'some email', id }) {
 
     const handleRating = () => {
         //go to the evaluation page
         console.log('fas')
     }
-
+    const navigate = useNavigate();
 
     if (isRating) {        
     return (
@@ -25,6 +27,10 @@ export default function ListProfessor({isRating = true,  name = 'Vladyslav Balus
                 </div>
                 <ListItemText
                     primary={name}
+                    onClick={() => {
+                        navigate(`${rating}/`+id)
+                    }
+                    }
                     secondary={
                         <React.Fragment>
                             <Typography
@@ -36,7 +42,7 @@ export default function ListProfessor({isRating = true,  name = 'Vladyslav Balus
                                 <b>Faculty:</b> {faculty}
                             </Typography>
                             <Typography>
-                                <b>Description:</b> {description}
+                                <b>Email:</b> {email}
                             </Typography>
                         </React.Fragment>
                     }
@@ -58,6 +64,10 @@ export default function ListProfessor({isRating = true,  name = 'Vladyslav Balus
             </div>
             <ListItemText
                 primary={name}
+                onClick={() => {
+                    navigate(`${rating}/`+id)
+                }
+                }
                 secondary={
                     <React.Fragment>
                         <Typography
@@ -69,7 +79,7 @@ export default function ListProfessor({isRating = true,  name = 'Vladyslav Balus
                             <b>Faculty:</b> {faculty}
                         </Typography>
                         <Typography>
-                            <b>Description:</b> {description}
+                            <b>Email:</b> {email}
                         </Typography>
                     </React.Fragment>
                 }

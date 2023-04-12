@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useContext} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,16 +13,23 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import {lectures, login, registr} from "../utils/routes";
+import {allListProfessor, lectures, login, registr} from "../utils/routes";
 import {useNavigate} from "react-router-dom";
+import {AuthContext} from "../App";
 
-const pages = [
-    {name: 'All teachers', path: lectures},
-    {name: 'Login', path: login},
-    {name: 'Sign Out', path: registr},
-]
-const settings = [{name: 'Profile', path: '/student'}, {name: 'Dashboard', path: '/'}, 'Logout'];
+
 function ResponsiveAppBar() {
+    const {currentUser} = useContext(AuthContext)
+
+    const pages = !currentUser ? [
+        {name: 'All teachers', path: allListProfessor},
+        {name: 'Login', path: login},
+        {name: 'Sign Out', path: registr},
+    ] : [
+        {name: 'All teachers', path: lectures},
+    ]
+    const settings = [{name: 'Profile', path: '/student'}, {name: 'Dashboard', path: '/'}, {name: 'Logout', path: '/'}];
+
     const navigate = useNavigate();
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -133,7 +141,17 @@ function ResponsiveAppBar() {
                             </Button>
                         ))}
                     </Box>
-
+                    <Box>
+                        {currentUser && <button onClick={
+                            () => {
+                                localStorage.removeItem('id')
+                                window.location.reload()
+                            }
+                        }>Log out</button>}
+                    </Box>
+                    <Box>
+                        {currentUser && <span>{currentUser.name + ': ' + currentUser.role}</span>}
+                    </Box>
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
