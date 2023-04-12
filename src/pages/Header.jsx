@@ -37,9 +37,11 @@ function ResponsiveAppBar() {
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
+        debugger
         setAnchorElNav(event.currentTarget);
     };
     const handleOpenUserMenu = (event) => {
+        debugger
         setAnchorElUser(event.currentTarget);
     };
 
@@ -48,7 +50,7 @@ function ResponsiveAppBar() {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = (path) => {
+    const handleCloseUserMenu = (event, path) => {
         navigate(path, {replace: true})
         setAnchorElUser(null);
     };
@@ -179,7 +181,7 @@ function ResponsiveAppBar() {
                         >
                             {settings.map((setting) => (
                                 typeof setting === 'object' ? (
-                                <MenuItem key={setting.name} onClick={() => handleCloseUserMenu(setting.path)}>
+                                <MenuItem key={setting.name} onClick={(e) => handleCloseUserMenu(e, setting.path)}>
                                     <Typography textAlign="center">{setting.name}</Typography>
                                 </MenuItem>
                                 ) : (

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useContext, useEffect, useState} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -7,11 +8,12 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {createContext, useContext, useEffect, useState} from "react";
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {AuthContext} from "../App";
 import {Alert} from "@mui/material";
 import {RatingAPI} from "../api/RatingAPI";
+import {Navigate, useNavigate} from 'react-router-dom';
+import {allListProfessor} from "../utils/routes";
 
 
 const theme = createTheme();
@@ -22,6 +24,7 @@ export default function StudentProfile({faculty = 'Faculty of Electronics', cour
     const {currentUser} = useContext(AuthContext)
     const [isLoafing, setIsLoading] = useState(true)
     // const [address, setAddress] = useState(null)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetch = async () => {
@@ -34,6 +37,9 @@ export default function StudentProfile({faculty = 'Faculty of Electronics', cour
     }, [])
 
     if (!currentUser) return <Alert>Ви не авторизовані</Alert>
+    if(currentUser.role === 'lecturer') {
+        navigate(`/${allListProfessor}/item/${currentUser.id}`)
+    }
     // if(!name) return <Alert>loading...</Alert>
 
     return (
