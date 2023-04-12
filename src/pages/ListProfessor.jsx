@@ -7,21 +7,34 @@ import Typography from '@mui/material/Typography';
 import StarIcon from '@mui/icons-material/Star';
 import {useNavigate} from "react-router-dom";
 import {allListProfessor, rating} from "../utils/routes";
+import {useEffect, useState} from "react";
+import {RatingAPI} from "../api/RatingAPI";
 
-export default function ListProfessor({isRating = false,  name = 'Vladyslav Balushka ', email = 'some email', id }) {
+export default function ListProfessor({ name = 'Vladyslav Balushka ', email = 'some email', id }) {
 
-        const [rate, setRate] = React.useState(isRating)
-
+    const [rait, setReait] = useState(null)
+    const [isRating, setIsRating] = useState(true)
+    const [rate, setRate] = React.useState(isRating)
     const handleRating = () => {
-        setRate((prev) => !prev )   
         navigate(`${rating}/`+id)
-        
+        setRate((prev) => !prev )
     }
+
+
+
+    // useEffect(() => {
+    //     const fetch = async () => {
+    //         const res = await RatingAPI.getRaitnedLectures(id);
+    //         debugger
+    //     }
+    //     fetch()
+    // }, [])
+
     const navigate = useNavigate();
 
     if (rate) {        
     return (
-        <List sx={{  ml: 60,  width: '100%', maxWidth: 460, bgcolor: 'background.paper' }}>
+        <List sx={{mt: 2,  ml: 60,  width: '100%', maxWidth: 460, bgcolor: 'background.paper' }}>
             
             <ListItem alignItems="flex-start">
                 <div onClick={handleRating} className='icon-div' >

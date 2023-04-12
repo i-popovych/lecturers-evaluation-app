@@ -84,7 +84,7 @@ export default function StudentProfile({faculty = 'Faculty of Electronics', cour
                                         Your name: {currentUser.name}
                                     </Typography>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                                        Your address: {currentUser.email}
+                                        Your address: {currentUser.login}
                                     </Typography>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
                                         Your faculty: {faculty}

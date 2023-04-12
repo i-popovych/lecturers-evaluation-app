@@ -30,5 +30,8 @@ export const RatingAPI = {
     },
     getStudentRatingHistory: async (id) => {
         return await base.get(`/student/getmarks/${id}`)
+    },
+    getRaitnedLectures: async (id) => {
+        return await base.get(`student/${id}/getlecturers`)
     }
 }

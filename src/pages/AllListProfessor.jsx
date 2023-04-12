@@ -10,6 +10,7 @@ const AllListProfessor = () => {
         return jsonArr.filter(i => id === i.uid).length
     }
 
+
     useEffect(() => {
         const fetch = async () => {
             try {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext } from 'react';
+import {useContext} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,14 +13,13 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import {allListProfessor, lectures, login, registr} from "../utils/routes";
+import {allListProfessor, login, registr} from "../utils/routes";
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../App";
-import logo from "../assets/logo.png";
 
 
 function ResponsiveAppBar() {
-    const { currentUser } = useContext(AuthContext)
+    const { currentUser, setCurrentUser } = useContext(AuthContext)
 
     const pages = !currentUser ? [
         { name: 'All teachers', path: allListProfessor },
@@ -29,7 +28,7 @@ function ResponsiveAppBar() {
     ] : [
         { name: 'All teachers', path: allListProfessor },
     ]
-    const settings = [{ name: 'Profile', path: '/student' }, { name: 'Dashboard', path: '/' }, { name: 'Logout', path: '/' }];
+    const settings = [{ name: 'Profile', path: '/student' }, { name: 'Dashboard', path: '/' }, 'Logout'];
 
     const navigate = useNavigate();
 
@@ -54,6 +53,11 @@ function ResponsiveAppBar() {
         navigate(path, {replace: true})
         setAnchorElUser(null);
     };
+
+    const handleRemoveUser = (e) => {
+        localStorage.removeItem('id')
+        setCurrentUser(null)
+    }
 
     return (
         <AppBar position="static">
@@ -198,7 +202,7 @@ function ResponsiveAppBar() {
                                 </MenuItem>
                                 ) : (
                                     <MenuItem key={setting}>
-                                        <Typography textAlign="center">{setting}</Typography>
+                                        <Typography textAlign="center" onClick={handleRemoveUser}>{setting}</Typography>
                                     </MenuItem>
                                 )
                             ))}

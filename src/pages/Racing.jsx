@@ -36,7 +36,6 @@ export default function Racing() {
                 sum.push(rate[i].fair)
             }
             let result = sum.reduce((sum, current) => sum + current, 0);
-            debugger
             result = result / sum.length
 
             setName(res.data.name)
@@ -60,6 +59,8 @@ export default function Racing() {
         } catch (e) {
 
         }
+
+        window.location.reload()
     }
 
 
