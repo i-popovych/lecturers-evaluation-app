@@ -195,23 +195,10 @@ export default function RegisterForm() {
                             Sign Up
                         </Button>
                         {
-                            isLoading && (
-                                <Grid container>
-                                    <Grid item>
-                                        <div style={{ position: 'absolute', top: '400px', left: '700px' }} >
-                                            <CircularProgress color="inherit" />
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                            )
-                        }
-                        {
                             message && (
                                 <Grid container>
                                     <Grid item sx={{ ml: 9 }}>
-                                    <div style={{ position: 'absolute', top: '400px', left: '700px' }} >
-                                            <CircularProgress color="inherit" />
-                                        </div>
+                                            <Alert>{message}</Alert>
                                     </Grid>
                                 </Grid>
                             )
