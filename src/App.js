@@ -4,6 +4,7 @@ import AppRouter from "./components/AppRouter";
 import "./App.css"
 import {AuthAPI} from "./api/AuthAPI";
 import {RatingAPI} from "./api/RatingAPI";
+import {Alert} from "@mui/material";
 export const AuthContext = createContext(null)
 
 const App = () => {
@@ -28,7 +29,7 @@ const App = () => {
         fetch()
     }, [])
 
-    if (!isInitialize) return <div>Loading...</div>
+    if (!isInitialize) return <Alert>Loading...</Alert>
 
     return (
         <>

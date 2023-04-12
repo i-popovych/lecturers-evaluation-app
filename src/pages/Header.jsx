@@ -26,7 +26,7 @@ function ResponsiveAppBar() {
         {name: 'Login', path: login},
         {name: 'Sign Out', path: registr},
     ] : [
-        {name: 'All teachers', path: lectures},
+        {name: 'All teachers', path: allListProfessor},
     ]
     const settings = [{name: 'Profile', path: '/student'}, {name: 'Dashboard', path: '/'}, {name: 'Logout', path: '/'}];
 

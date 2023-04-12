@@ -1,12 +1,5 @@
-import axios from "axios";
+import {base} from "./AuthAPI";
 
-export const base = axios.create({
-    baseURL: "http://localhost:8080"
-})
-
-export const json = axios.create({
-    baseURL: "http://localhost:5000/"
-})
 
 export const RatingAPI = {
     getRating: async (id) => {
