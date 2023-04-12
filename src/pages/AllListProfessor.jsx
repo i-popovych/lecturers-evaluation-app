@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ListProfessor from './ListProfessor'
 import { RatingAPI } from "../api/RatingAPI";
-import { Alert, CircularProgress } from "@mui/material";
+import {  CircularProgress } from "@mui/material";
 
 const AllListProfessor = () => {
     const [lectures, setLecture] = useState(null)

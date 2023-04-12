@@ -104,22 +104,14 @@ export default function StudentProfile({faculty = 'Faculty of Electronics', cour
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
-                                    <Typography sx={{ml: 17}} variant="h6" align="center" color="text.secondary" paragraph>
-                                        Information with your rating</Typography>
+                                    <Typography sx={{ml: 25}} variant="h6" align="center" color="text.secondary" paragraph>
+                                        Rating history</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                                        Your name: {currentUser.name}
+                                        Немає інформації
                                     </Typography>
-                                    <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                                        Your address: {currentUser.login}
-                                    </Typography>
-                                    <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                                        Your faculty: {faculty}
-                                    </Typography>
-                                    <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                                        Your course: {course}
-                                    </Typography>
+                                    
                                 </AccordionDetails>
                             </Accordion>
 
