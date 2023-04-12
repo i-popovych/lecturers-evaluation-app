@@ -50,13 +50,8 @@ function ResponsiveAppBar() {
         setAnchorElNav(null);
     };
 
-<<<<<<< HEAD
     const handleCloseUserMenu = (event, path) => {
         navigate(path, {replace: true})
-=======
-    const handleCloseUserMenu = (path) => {
-        navigate(path, { replace: true })
->>>>>>> c40cf55a3bedb16b20fd18858f9d6f50ac7dd0d3
         setAnchorElUser(null);
     };
 
@@ -198,15 +193,9 @@ function ResponsiveAppBar() {
                         >
                             {settings.map((setting) => (
                                 typeof setting === 'object' ? (
-<<<<<<< HEAD
                                 <MenuItem key={setting.name} onClick={(e) => handleCloseUserMenu(e, setting.path)}>
                                     <Typography textAlign="center">{setting.name}</Typography>
                                 </MenuItem>
-=======
-                                    <MenuItem key={setting.name} onClick={() => handleCloseUserMenu(setting.path)}>
-                                        <Typography textAlign="center">{setting.name}</Typography>
-                                    </MenuItem>
->>>>>>> c40cf55a3bedb16b20fd18858f9d6f50ac7dd0d3
                                 ) : (
                                     <MenuItem key={setting}>
                                         <Typography textAlign="center">{setting}</Typography>
