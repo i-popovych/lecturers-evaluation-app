@@ -27,10 +27,20 @@ export default function LoginForm() {
     const [passwordDirty, setPasswordDirty] = React.useState(false)
     const [emailError, setEmailError] = React.useState('Поле email не може бути пустим')
     const [passwordError, setPasswordError] = React.useState('Поле пароля не може бути пустим')
+    const [formValid, setFormValid] = React.useState(false)
 
     const [isLoading, setIsLoading] = useState(false)
     const [message, setMessage] = useState(null)
     const {setCurrentUser} = useContext(AuthContext)
+
+    React.useEffect(() => {
+        if (emailError || passwordError) {
+            setFormValid(false)
+        }
+        else {
+            setFormValid(true)
+        }
+    })
 
 
     const emailHendler = (e) =>{
@@ -138,6 +148,7 @@ export default function LoginForm() {
                             label="Remember me"
                         />
                         <Button
+                            disabled={!formValid}
                             type="submit"
                             fullWidth
                             variant="contained"
