@@ -16,7 +16,7 @@ export const RatingAPI = {
                 lecturer_id: li, quality: q, matherial: m, fair: f
             })
         } catch (e) {
-            console.log('asdfsdfds')
+            console.log(e)
         }
     },
     getLecturesIds: async () => {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useState} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -11,9 +11,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {AuthContext} from "../App";
 import {Alert} from "@mui/material";
-import {RatingAPI} from "../api/RatingAPI";
-import {Navigate, useNavigate} from 'react-router-dom';
-import {allListProfessor} from "../utils/routes";
+import {useNavigate} from 'react-router-dom';
 
 
 const theme = createTheme();
@@ -36,7 +34,7 @@ export default function StudentProfile({faculty = 'Faculty of Electronics', cour
     //     fetch()
     // }, [])
 
-    if (!currentUser) return <Alert>Ви не авторизовані</Alert>
+    if (!currentUser) return <Box><Alert>Ви не авторизовані</Alert></Box>
     // if(!name) return <Alert>loading...</Alert>
 
     return (

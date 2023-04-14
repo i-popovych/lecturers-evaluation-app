@@ -28,7 +28,12 @@ function ResponsiveAppBar() {
     ] : [
         { name: 'All teachers', path: allListProfessor },
     ]
-    const settings = [{ name: 'Student profile', path: '/student' }, {name: 'Lecture profile', path: `/${allListProfessor}/item/${currentUser ? currentUser.id : ''}`}, { name: 'Dashboard', path: '/' }, 'Log out'];
+    const settings = [
+        { name: 'Student profile', path: '/student' },
+        {name: 'Lecture profile', path: `/${allListProfessor}/item/${currentUser ? currentUser.id : ''}`},
+        { name: 'Dashboard', path: '/' },
+        'Log out'
+    ];
 
     const navigate = useNavigate();
 

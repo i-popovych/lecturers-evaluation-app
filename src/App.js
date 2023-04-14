@@ -1,10 +1,10 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import Header from "./pages/Header";
 import AppRouter from "./components/AppRouter";
 import "./App.css"
-import { AuthAPI } from "./api/AuthAPI";
-import { RatingAPI } from "./api/RatingAPI";
-import { CircularProgress } from "@mui/material";
+import {RatingAPI} from "./api/RatingAPI";
+import {CircularProgress} from "@mui/material";
+
 export const AuthContext = createContext(null)
 
 const App = () => {

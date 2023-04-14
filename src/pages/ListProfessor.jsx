@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
@@ -6,9 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import StarIcon from '@mui/icons-material/Star';
 import {useNavigate} from "react-router-dom";
-import {allListProfessor, rating} from "../utils/routes";
-import {useEffect, useState} from "react";
-import {RatingAPI} from "../api/RatingAPI";
+import {rating} from "../utils/routes";
 
 export default function ListProfessor({ name = 'Vladyslav Balushka ', email = 'some email', id }) {
 
