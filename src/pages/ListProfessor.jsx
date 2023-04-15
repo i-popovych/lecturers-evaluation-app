@@ -11,14 +11,11 @@ import {rating} from "../utils/routes";
 
 export default function ListProfessor({ name = 'Vladyslav Balushka ', email = 'some email', id }) {
 
-    const [rait, setReait] = useState(null)
-    const [isRating, setIsRating] = useState(true)
-    const [rate, setRate] = React.useState(isRating)
+    const [rate, setRate] = React.useState(true)
     const handleRating = () => {
-        navigate(`${rating}/`+id)
-        setRate((prev) => !prev )
+        navigate(`${rating}/` + id)
+        setRate((prev) => !prev)
     }
-
 
 
     // useEffect(() => {
@@ -30,68 +27,39 @@ export default function ListProfessor({ name = 'Vladyslav Balushka ', email = 's
     // }, [])
 
     const navigate = useNavigate();
+    const color = rate ? "yellow" : "silver"
 
-    if (rate) {        
     return (
-        <List sx={{mt: 2,  ml: 60,  width: '100%', maxWidth: 460, bgcolor: 'background.paper' }}>
-            
+        <List sx={{mt: 2, ml: 60, width: '100%', maxWidth: 460, bgcolor: 'background.paper'}}>
+
             <ListItem alignItems="flex-start">
-                <div onClick={handleRating} className='icon-div' >
-                    
-                    <StarIcon 
-                    // onClick={() => navigate(`${rating}/`+id)}
-                     className='icon' sx={{color: 'yellow'}} />
+                <div onClick={handleRating} className='icon-div'>
+
+                    <StarIcon
+                        // onClick={() => navigate(`${rating}/`+id)}
+                        className='icon' sx={{color}}/>
                 </div>
                 <ListItemText
                     sx={{cursor: 'pointer'}}
                     primary={name}
                     onClick={() => {
-                        navigate(`${rating}/`+id)
+                        navigate(`${rating}/` + id)
                     }
                     }
                     secondary={
                         <React.Fragment>
-                           
+
                             <Typography>
                                 <b>Email:</b> {email}
                             </Typography>
                         </React.Fragment>
                     }
-                />        
+                />
             </ListItem>
-            
-            <Divider variant="inset" component="li" />
+
+            <Divider variant="inset" component="li"/>
 
 
         </List>
-    )}
-    else { return (
-        <List sx={{mt: 2,  ml: 60,  width: '100%', maxWidth: 460, bgcolor: 'background.paper' }}>
-        
-        <ListItem alignItems="flex-start">
-            <div onClick={handleRating} className='icon-div' >
-                
-                <StarIcon className='icon' sx={{color: 'silver'}} />
-            </div>
-            <ListItemText
-                primary={name}
-                onClick={() => {
-                    navigate(`${rating}/`+id)
-                }
-                }
-                secondary={
-                    <React.Fragment>
-                        <Typography>
-                            <b>Email:</b> {email}
-                        </Typography>
-                    </React.Fragment>
-                }
-            />        
-        </ListItem>
-        
-        <Divider variant="inset" component="li" />
-
-
-    </List> 
-    )};
+    )
 }
