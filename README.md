@@ -1,3 +1,29 @@
+# Description
+This project was developed in a team in 2 days as part of a hackathon from SoftServe. The main goal of the project is to increase the convenience of evaluating teachers at universities.
+
+Our project is a full-stack program that allows students to register, search for teachers and give them ratings. Based on the assessment of all students, the teacher's rating is formed. The project also has pages with a presonal profile for the teacher and the student.
+
+The stack of technologies used on the front end: <br>
+React, React Context, React Router DOM, MUI, HTML, CSS, JS
+
+Backend stack: Java, Spring Framework, MySQL
+
+# Some screenshots of the project
+![auth page](src/assets/img.png)
+
+![rating page](src/assets/rating.png)
+
+![lecturers list](src/assets/lecturers_list.png)
+### Lecturer personal page
+![lecturer personal page](src/assets/lecturer_personal_page.png)
+
+# The development team
+[Oleksandr Yaremchuk](https://www.linkedin.com/in/oleksandr-yaremchuk-41408869/) - Team mentor <br>
+[i-popovych](https://github.com/i-popovych) - Front end developer <br>
+[Vladyslav2503](https://github.com/Vladyslav2503) - Front end developer <br>
+[DmytroDmytruk](https://github.com/DmytroDmytruk) - Back end developer <br>
+[Oleksa2106](https://github.com/Oleksa2106) - UI/UX Designer
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
